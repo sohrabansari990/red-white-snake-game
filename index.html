@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crimson Snake — Red &amp; White Edition</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="header">
+      <div class="brand">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <h1>SNAKE</h1>
+      </div>
+      <div class="scoreboard" aria-live="polite">
+        <div class="stat">
+          <span class="stat-label">SCORE</span>
+          <span class="stat-value" id="score">0</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">BEST</span>
+          <span class="stat-value" id="high-score">0</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="controls-bar" aria-label="Game settings">
+      <div class="difficulty-group" role="group" aria-label="Speed">
+        <button type="button" class="chip" data-speed="150">Slow</button>
+        <button type="button" class="chip active" data-speed="110">Normal</button>
+        <button type="button" class="chip" data-speed="75">Fast</button>
+      </div>
+      <button type="button" class="btn-outline" id="pause-btn" disabled>Pause</button>
+    </section>
+
+    <section class="board-wrapper">
+      <canvas id="game-canvas" width="480" height="480" aria-label="Snake game board"></canvas>
+
+      <div class="overlay" id="overlay">
+        <div class="overlay-card">
+          <p class="overlay-kicker" id="overlay-kicker">RED &amp; WHITE EDITION</p>
+          <h2 class="overlay-title" id="overlay-title">Ready to Play?</h2>
+          <p class="overlay-subtitle" id="overlay-subtitle">
+            Eat the red snacks to grow. Avoid the red walls and your own tail!
+          </p>
+          <button type="button" class="btn-primary" id="start-btn">Start Game</button>
+          <p class="overlay-hint">Use Arrow Keys or WASD &bull; Space to Pause</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="touch-controls" aria-label="Touch direction pad">
+      <button type="button" class="dpad-btn up" data-dir="UP" aria-label="Move Up">&#9650;</button>
+      <div class="dpad-row">
+        <button type="button" class="dpad-btn left" data-dir="LEFT" aria-label="Move Left">&#9664;</button>
+        <button type="button" class="dpad-btn down" data-dir="DOWN" aria-label="Move Down">&#9660;</button>
+        <button type="button" class="dpad-btn right" data-dir="RIGHT" aria-label="Move Right">&#9654;</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
