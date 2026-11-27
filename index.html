@@ -7,16 +7,26 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="bg-pattern" aria-hidden="true"></div>
+
   <main class="app">
     <header class="header">
       <div class="brand">
         <span class="brand-dot" aria-hidden="true"></span>
-        <h1>SNAKE</h1>
+        <div>
+          <h1>SNAKE</h1>
+          <p class="brand-sub">RED &amp; WHITE EDITION</p>
+        </div>
       </div>
+
       <div class="scoreboard" aria-live="polite">
         <div class="stat">
           <span class="stat-label">SCORE</span>
           <span class="stat-value" id="score">0</span>
+        </div>
+        <div class="stat stat-level">
+          <span class="stat-label">LEVEL</span>
+          <span class="stat-value" id="level">1</span>
         </div>
         <div class="stat">
           <span class="stat-label">BEST</span>
@@ -25,13 +35,35 @@
       </div>
     </header>
 
-    <section class="controls-bar" aria-label="Game settings">
-      <div class="difficulty-group" role="group" aria-label="Speed">
-        <button type="button" class="chip" data-speed="150">Slow</button>
-        <button type="button" class="chip active" data-speed="110">Normal</button>
-        <button type="button" class="chip" data-speed="75">Fast</button>
+    <section class="level-bar" aria-label="Level progress">
+      <div class="level-meta">
+        <span class="level-name" id="level-name">Level 1 &bull; Classic Arena</span>
+        <span class="level-count" id="level-count">0 / 5 snacks</span>
       </div>
-      <button type="button" class="btn-outline" id="pause-btn" disabled>Pause</button>
+      <div class="progress-track">
+        <div class="progress-fill" id="level-progress" style="width: 0%"></div>
+      </div>
+    </section>
+
+    <section class="controls-bar" aria-label="Game settings">
+      <div class="control-cluster">
+        <div class="difficulty-group" role="group" aria-label="Speed">
+          <button type="button" class="chip" data-speed="145">Slow</button>
+          <button type="button" class="chip active" data-speed="110">Normal</button>
+          <button type="button" class="chip" data-speed="75">Fast</button>
+        </div>
+
+        <div class="difficulty-group" role="group" aria-label="Board background">
+          <button type="button" class="chip active" data-bg="grid">Grid</button>
+          <button type="button" class="chip" data-bg="dots">Dots</button>
+          <button type="button" class="chip" data-bg="check">Check</button>
+        </div>
+      </div>
+
+      <div class="action-cluster">
+        <button type="button" class="btn-outline" id="sound-btn" aria-pressed="true">Sound: On</button>
+        <button type="button" class="btn-outline" id="pause-btn" disabled>Pause</button>
+      </div>
     </section>
 
     <section class="board-wrapper">
@@ -42,10 +74,10 @@
           <p class="overlay-kicker" id="overlay-kicker">RED &amp; WHITE EDITION</p>
           <h2 class="overlay-title" id="overlay-title">Ready to Play?</h2>
           <p class="overlay-subtitle" id="overlay-subtitle">
-            Eat the red snacks to grow. Avoid the red walls and your own tail!
+            Eat red snacks to grow and advance through 5+ levels. Avoid the red walls, barriers, and your own tail!
           </p>
           <button type="button" class="btn-primary" id="start-btn">Start Game</button>
-          <p class="overlay-hint">Use Arrow Keys or WASD &bull; Space to Pause</p>
+          <p class="overlay-hint">Arrow Keys / WASD to Move &bull; Space to Pause</p>
         </div>
       </div>
     </section>

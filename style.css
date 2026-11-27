@@ -7,7 +7,7 @@
   --red-100: #fee2e2;
   --red-50: #fff5f5;
   --white: #ffffff;
-  --shadow: 0 18px 40px -15px rgba(185, 28, 28, 0.25);
+  --shadow: 0 24px 50px -16px rgba(185, 28, 28, 0.28);
 }
 
 *,
@@ -19,27 +19,48 @@
 }
 
 body {
+  position: relative;
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background: radial-gradient(circle at top, var(--white) 0%, var(--red-50) 100%);
+  background-color: var(--white);
   color: var(--red-900);
+  overflow-x: hidden;
+}
+
+.bg-pattern {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--white);
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(220, 38, 38, 0.14) 0%, transparent 38%),
+    radial-gradient(circle at 88% 82%, rgba(239, 68, 68, 0.16) 0%, transparent 42%),
+    radial-gradient(rgba(220, 38, 38, 0.18) 1.4px, transparent 1.4px),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(254, 226, 226, 0.35) 0px,
+      rgba(254, 226, 226, 0.35) 2px,
+      transparent 2px,
+      transparent 18px
+    );
+  background-size: 100% 100%, 100% 100%, 24px 24px, 100% 100%;
 }
 
 .app {
   width: 100%;
-  max-width: 520px;
-  background: var(--white);
-  border: 2px solid var(--red-600);
-  border-radius: 20px;
+  max-width: 540px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 2.5px solid var(--red-600);
+  border-radius: 22px;
   padding: 20px;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow), 0 0 0 6px rgba(255, 255, 255, 0.75);
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 
 .header {
@@ -52,41 +73,61 @@ body {
 .brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 11px;
 }
 
 .brand-dot {
-  width: 14px;
-  height: 14px;
+  width: 15px;
+  height: 15px;
   border-radius: 4px;
   background: var(--red-600);
   box-shadow: 0 0 0 4px var(--red-100);
+  flex-shrink: 0;
 }
 
 .brand h1 {
-  font-size: 1.5rem;
+  font-size: 1.45rem;
   font-weight: 800;
   letter-spacing: 0.08em;
+  line-height: 1;
   color: var(--red-600);
+}
+
+.brand-sub {
+  margin-top: 3px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--red-700);
 }
 
 .scoreboard {
   display: flex;
-  gap: 10px;
+  gap: 8px;
 }
 
 .stat {
   background: var(--red-50);
   border: 1.5px solid var(--red-200);
   border-radius: 12px;
-  padding: 6px 14px;
-  min-width: 78px;
+  padding: 5px 12px;
+  min-width: 68px;
   text-align: center;
+}
+
+.stat-level {
+  background: var(--red-600);
+  border-color: var(--red-600);
+}
+
+.stat-level .stat-label,
+.stat-level .stat-value {
+  color: var(--white);
 }
 
 .stat-label {
   display: block;
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   color: var(--red-600);
@@ -94,17 +135,66 @@ body {
 
 .stat-value {
   display: block;
-  font-size: 1.2rem;
+  font-size: 1.12rem;
   font-weight: 800;
   color: var(--red-900);
   font-variant-numeric: tabular-nums;
 }
 
+.level-bar {
+  background: var(--red-50);
+  border: 1.5px solid var(--red-200);
+  border-radius: 12px;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.level-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--red-900);
+}
+
+.level-count {
+  color: var(--red-600);
+  font-variant-numeric: tabular-nums;
+}
+
+.progress-track {
+  height: 7px;
+  width: 100%;
+  background: var(--white);
+  border: 1px solid var(--red-200);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--red-500), var(--red-700));
+  border-radius: 999px;
+  transition: width 0.2s ease;
+}
+
 .controls-bar {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  gap: 8px;
+}
+
+.control-cluster,
+.action-cluster {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .difficulty-group {
@@ -113,16 +203,16 @@ body {
   border: 1.5px solid var(--red-200);
   border-radius: 10px;
   padding: 3px;
-  gap: 3px;
+  gap: 2px;
 }
 
 .chip {
   border: none;
   background: transparent;
   color: var(--red-700);
-  font-size: 0.8rem;
+  font-size: 0.76rem;
   font-weight: 700;
-  padding: 6px 12px;
+  padding: 5px 10px;
   border-radius: 7px;
   cursor: pointer;
   transition: background 0.15s ease, color 0.15s ease;
@@ -141,9 +231,9 @@ body {
   border: 1.5px solid var(--red-600);
   background: var(--white);
   color: var(--red-600);
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  padding: 7px 14px;
+  padding: 6px 11px;
   border-radius: 10px;
   cursor: pointer;
   transition: background 0.15s ease, color 0.15s ease, opacity 0.15s ease;
@@ -163,7 +253,7 @@ body {
   width: 100%;
   aspect-ratio: 1 / 1;
   border: 5px solid var(--red-600);
-  border-radius: 12px;
+  border-radius: 14px;
   overflow: hidden;
   background: var(--white);
   box-shadow: inset 0 0 0 2px var(--red-100);
@@ -178,7 +268,7 @@ body {
 .overlay {
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
@@ -194,7 +284,7 @@ body {
 
 .overlay-card {
   text-align: center;
-  max-width: 320px;
+  max-width: 330px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -207,7 +297,7 @@ body {
   letter-spacing: 0.12em;
   color: var(--red-600);
   background: var(--red-100);
-  padding: 4px 10px;
+  padding: 4px 12px;
   border-radius: 999px;
 }
 
@@ -218,7 +308,7 @@ body {
 }
 
 .overlay-subtitle {
-  font-size: 0.95rem;
+  font-size: 0.94rem;
   line-height: 1.45;
   color: var(--red-700);
 }
@@ -290,5 +380,9 @@ body {
 @media (hover: none) and (pointer: coarse), (max-width: 540px) {
   .touch-controls {
     display: flex;
+  }
+
+  .header {
+    flex-wrap: wrap;
   }
 }
